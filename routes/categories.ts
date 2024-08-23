@@ -67,7 +67,6 @@ categoriesRouter.delete('/:id', async (req, res, next) => {
     return res.send({message: 'Category was deleted successfully.'});
   } catch (e) {
     next(e);
-    return res.status(400).send({ error: 'Category cannot be deleted as it is referenced by other records.' });
   }
 });
 

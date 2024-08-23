@@ -5,3 +5,11 @@ export interface Category {
 }
 
 export type CategoryWithoutId = Omit<Category, 'id'>;
+
+export interface Location {
+  id: number;
+  title: string;
+  description: string | null;
+}
+
+export type LocationWithoutId = Omit<Location, 'id'>;
