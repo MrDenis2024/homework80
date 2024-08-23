@@ -23,10 +23,10 @@ locationsRouter.get('/:id', async (req, res, next) => {
     const locations = result[0] as Location[];
 
     if(locations.length === 0) {
-      return res.status(404).send({error: 'No locations found.'});
+      return res.status(404).send({error: 'No location found.'});
     }
 
-    return res.send(locations);
+    return res.send(locations[0]);
   } catch (e) {
     next(e);
   }
@@ -86,7 +86,7 @@ locationsRouter.put('/:id', async (req, res, next) => {
     const resultHeader = insertResult[0] as ResultSetHeader;
 
     if(resultHeader.affectedRows === 0) {
-      return res.status(400).send({error: 'No locations found.'});
+      return res.status(404).send({error: 'No locations found.'});
     }
 
     const getNewResult = await mysqlDb.getConnection().query('SELECT * FROM locations WHERE id = ?', [id]);
